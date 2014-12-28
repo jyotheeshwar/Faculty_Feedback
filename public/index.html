@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<!-- 
+This website uses the Semantic UI framework for its front end.
+http://semantic-ui.com
+
+# The MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Developed by: Jyotheeswar Arvind Manickavasagar, Ritikesh G, Ankur Sinha
+-->
+<html ng-app="TestAngular" ng-controller="MainCtrl">
+<head>
+    <meta charset="utf-8" />
+    <title>{{test}}</title>
+    <link rel="stylesheet" href="css/semantic.css" />
+	<script src="scripts/jquery-1.11.2.js"></script>
+    <script src="scripts/semantic.js"></script>
+    <script src="scripts/angular.js"></script>
+    <script src="app.js"></script> <!-- we will later move angular-code into separate folders in angular style. -->
+</head>
+<body>
+<!-- Menu component -->
+<div class="ui inverted menu">
+  <a class="active item">
+    <i class="home icon"></i> Home
+  </a>
+  <a class="item">
+    <i class="mail icon"></i> Messages
+  </a>1
+  <div class="right menu">
+    <div class="item">
+      <div class="ui icon input">
+        <input type="text" placeholder="Faculty,University name">
+        <i class="search link icon"></i>
+      </div>
+    </div>
+    <div class="ui dropdown item">
+      Language <i class="dropdown icon"></i>
+      <div class="menu">
+        <a class="item">English</a>
+        <a class="item">Russian</a>
+        <a class="item">Spanish</a>
+      </div>
+    </div>
+    <div class="item">
+    <div class="ui primary button">Sign up</div>
+  </div>
+  <div class="item">
+    <div class="ui button">Log-in</div>
+  </div>
+  </div>
+</div>
+<!-- End of Menu -->
+<!-- Side Menu -->
+    <div id="sidebar-content" class="ui left vertical inverted labeled icon sidebar menu"> 
+        <a class="item">
+            <i class="home icon"></i>
+            Home
+        </a>
+        <a class="item">
+            <i class="block layout icon"></i>
+            Topics
+        </a>
+        <a class="item">
+            <i class="smile icon"></i>
+            Friends
+        </a>
+        <a class="item">
+            <i class="calendar icon"></i>
+            History
+        </a>
+        <a class="item">
+            <i class="mail icon"></i>
+            Messages
+        </a>
+        <a class="item">
+            <i class="chat icon"></i>
+            Discussions
+        </a>
+        <a class="item">
+            <i class="trophy icon"></i>
+            Achievements
+        </a>
+        <a class="item">
+            <i class="shop icon"></i>
+            Store
+        </a>
+        <a class="item">
+            <i class="settings icon"></i>
+            Settings
+        </a>
+    </div>
+<!-- Side Menu -->
+<!-- Main Body -->
+<div class="ui grid">
+<div class="five wide column">
+ <div id="sidebar-button" class="ui black big icon button">
+        <i class="content icon"></i>
+        <span class="text" style="display:none;">Menu</span>
+    </div>
+ </div>
+<div class="eight wide column">Main body content<br>sdsds<br>sdsdsdsd</div>
+<div class="three wide column">Auxillary<br>sdsadsda<br>sdsdasda</div>
+</div>
+<!-- End of main body -->
+<!-- Footer -->
+<footer>
+<div class="ui inverted footer vertical segment">
+    <div class="ui stackable center aligned page grid">
+      <div class="ten wide column">
+        <div class="ui three column center aligned stackable grid">
+          <div class="column">
+            <h5 class="ui inverted header">Students</h5>
+            <div class="ui inverted link list">
+              <a class="item">Report Abuse</a>
+              <a class="item">Rating Policy</a>
+              <a class="item">Complaints</a>
+            </div>
+          </div>
+          <div class="column">
+            <h5 class="ui inverted header">University</h5>
+            <div class="ui inverted link list">
+              <a class="item">Claim account</a>
+              <a class="item">Update information</a>
+              <a class="item">Report Abuse</a>
+            </div>
+          </div>
+          <div class="column">
+            <h5 class="ui inverted header">About Us</h5>
+            <div class="ui inverted link list">
+              <a class="item">The Team</a>
+              <a class="item">Our concept</a>
+              <a class="item">Privacy Policy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="six wide column">
+        <h5 class="ui inverted header">Contact Us</h5>
+        <addr>
+          66 XYZ<br>
+          Chennai India <br>
+        </addr>
+        <p>+91-9600089909</p>
+      </div>
+    </div>
+  </div>
+  </footer>
+ <!-- End of footer -->
+  <!-- Styling scripts -->
+    <script src="Scripts/jquery-1.11.2.js"></script>
+    <script src="Scripts/semantic.js"></script>
+    <script>
+        $('#sidebar-button').hover(function () {
+            $('.text').toggle();
+            //$('.text').transition('browse right');
+        });
+        $('#sidebar-button').click(function () {
+            $('#sidebar-content').sidebar('toggle');
+        });
+    </script>
+  <!-- End of styling scripts -->
+</body>
+</html>

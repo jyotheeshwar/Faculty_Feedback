@@ -1,0 +1,7 @@
+# VS Soln Files #
+######################
+
+*.njsproj
+*.suo
+*.dat
+obj/

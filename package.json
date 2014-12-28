@@ -1,0 +1,14 @@
+{
+  "name": "Faculty_Feedback",
+  "version": "0.0.0",
+  "description": "Faculty_Feedback",
+  "main": "server.js",
+  "author": {
+    "name": "Ritikesh G, Jyotheeswar Arvind Manickavasagar, Ankur Sinha",
+    "email": "someteamname@project.com"
+  },
+  "dependencies": {
+    "mongoose": "~3.8.2",
+    "express": "~4.10.6"
+  }
+}
