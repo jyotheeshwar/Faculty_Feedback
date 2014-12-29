@@ -50,12 +50,47 @@ Developed by: Jyotheeswar Arvind Manickavasagar, Ritikesh G, Ankur Sinha
     <div class="item">
     <div class="ui primary button">Sign up</div>
   </div>
-  <div class="item">
+  <div class="item" id="LoginButton">
     <div class="ui button">Log-in</div>
   </div>
   </div>
 </div>
 <!-- End of Menu -->
+<!-- Login Modal -->
+<div class="ui small modal" id="LoginModal">
+  <i class="close icon"></i>
+  <div class="header">
+    Login
+  </div>
+<div class="content">
+ <div class="ui form segment">
+  <div class="one required fields">
+<div class="field">
+  <label>Username</label>
+  <input placeholder="Username" type="text">
+</div>
+</div>
+<div class="one required fields">
+<div class="field">
+  <label>Password</label>
+  <div class="ui input focus">
+  <input placeholder="********" type="text">
+  </div>
+</div>
+</div>
+</div>
+</div>
+  <div class="actions">
+    <div class="ui black button">
+      Forgot Password
+    </div>
+    <div class="ui positive right labeled icon button">
+      Sign In
+      <i class="checkmark icon"></i>
+    </div>
+  </div>
+</div>
+<!-- End of Login Modal -->
 <!-- Side Menu -->
     <div id="sidebar-content" class="ui left vertical inverted labeled icon sidebar menu"> 
         <a class="item">
@@ -104,7 +139,7 @@ Developed by: Jyotheeswar Arvind Manickavasagar, Ritikesh G, Ankur Sinha
         <span class="text" style="display:none;">Menu</span>
     </div>
  </div>
-<div class="eight wide column">Main body content<br>sdsds<br>sdsdsdsd</div>
+<div class="eight wide column"><div class="content">Main body content<br>sdsds<br>sdsdsdsd</div></div>
 <div class="three wide column">Auxillary<br>sdsadsda<br>sdsdasda</div>
 </div>
 <!-- End of main body -->
@@ -163,6 +198,11 @@ Developed by: Jyotheeswar Arvind Manickavasagar, Ritikesh G, Ankur Sinha
         $('#sidebar-button').click(function () {
             $('#sidebar-content').sidebar('toggle');
         });
+    </script>
+    <script type="text/javascript">
+    $('#LoginButton').click(function () {
+    	$('#LoginModal').modal('show');
+    });
     </script>
   <!-- End of styling scripts -->
 </body>
