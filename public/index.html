@@ -47,7 +47,7 @@ Developed by: Jyotheeswar Arvind Manickavasagar, Ritikesh G, Ankur Sinha
         <a class="item">Spanish</a>
       </div>
     </div>
-    <div class="item">
+    <div class="item" id="signUpButton">
     <div class="ui primary button">Sign up</div>
   </div>
   <div class="item" id="LoginButton">
@@ -91,6 +91,41 @@ Developed by: Jyotheeswar Arvind Manickavasagar, Ritikesh G, Ankur Sinha
   </div>
 </div>
 <!-- End of Login Modal -->
+<!-- SignUp Modal -->
+<div class="ui small modal" id="signUpModal">
+  <i class="close icon"></i>
+  <div class="header">
+    Sign Up
+  </div>
+<div class="content">
+ <div class="ui form segment">
+  <div class="one required fields">
+<div class="field">
+  <label>Username</label>
+  <input placeholder="Username" type="text">
+</div>
+</div>
+<div class="one required fields">
+<div class="field">
+  <label>Password</label>
+  <div class="ui input focus">
+  <input placeholder="********" type="text">
+  </div>
+</div>
+</div>
+</div>
+</div>
+  <div class="actions">
+    <div class="ui black button">
+      Cancel
+    </div>
+    <div class="ui positive right labeled icon button">
+      Create Account
+      <i class="checkmark icon"></i>
+    </div>
+  </div>
+</div>
+<!-- End of Sign Up Modal -->
 <!-- Side Menu -->
     <div id="sidebar-content" class="ui left vertical inverted labeled icon sidebar menu"> 
         <a class="item">
@@ -139,8 +174,35 @@ Developed by: Jyotheeswar Arvind Manickavasagar, Ritikesh G, Ankur Sinha
         <span class="text" style="display:none;">Menu</span>
     </div>
  </div>
-<div class="eight wide column"><div class="content">Main body content<br>sdsds<br>sdsdsdsd</div></div>
-<div class="three wide column">Auxillary<br>sdsadsda<br>sdsdasda</div>
+<div class="seven wide column"><div class="content">Main body content<br>sdsds<br>sdsdsdsd</div></div>
+<div class="four wide column">
+<div class="content">
+	<div class="ui card">
+  <div class="image dimmable">
+<div class="ui dimmer">
+  <div class="content">
+    <div class="center">
+      <div class="ui inverted button">Change picture</div>
+    </div>
+  </div>
+</div>
+<img src="images/pup.jpg">
+  </div>
+  <div class="content">
+<div class="header">Name{{Name}}</div>
+<div class="meta">
+  <a class="group">University Name{{University_Name}}</a>
+</div>
+<div class="description">Some statistics</div>
+  </div>
+  <div class="extra content">
+<a class="right floated created">View ratings</a>
+<a class="friends">
+  Update information</a>
+  </div>
+</div>
+</div>
+</div>
 </div>
 <!-- End of main body -->
 <!-- Footer -->
@@ -184,6 +246,8 @@ Developed by: Jyotheeswar Arvind Manickavasagar, Ritikesh G, Ankur Sinha
         <p>+91-9600089909</p>
       </div>
     </div>
+    <div style="align:center;">
+    Developed by Jyotheeswar Arvind M, Ritikesh G, Ankur Sinha &nbsp; <i class="india flag"></i></div>
   </div>
   </footer>
  <!-- End of footer -->
@@ -202,6 +266,9 @@ Developed by: Jyotheeswar Arvind Manickavasagar, Ritikesh G, Ankur Sinha
     <script type="text/javascript">
     $('#LoginButton').click(function () {
     	$('#LoginModal').modal('show');
+    });
+    $('#signUpButton').click(function () {
+    	$('#signUpModal').modal('show');
     });
     </script>
   <!-- End of styling scripts -->
