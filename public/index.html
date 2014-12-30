@@ -175,7 +175,12 @@ Developed by: Jyotheeswar Arvind Manickavasagar, Ritikesh G, Ankur Sinha
     </div>
  </div>
 <div class="seven wide column"><div class="content">
-<div class="ui header">Welcome {{User_name}}</div><br>sdsds<br>sdsdsdsd</div></div>
+<div class="ui header">Welcome {{User_name}}</div>
+<div ng-repeat="rating in ratings">
+<h3>{{rating.name}}</h3><br>
+{{rating.rating}}<br>
+</div>
+</div></div>
 <div class="four wide column">
 <div class="content">
 	<div class="ui card">
