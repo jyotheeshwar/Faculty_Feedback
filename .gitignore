@@ -4,4 +4,5 @@
 *.njsproj
 *.suo
 *.dat
+*.sln
 obj/

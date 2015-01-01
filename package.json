@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "mongoose": "~3.8.2",
-    "express": "~4.10.6"
+    "express": "~4.10.6",
+    "passport": "~0.2.1",
+    "body-parser": "~1.10.0"
   }
 }

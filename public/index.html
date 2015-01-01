@@ -25,108 +25,106 @@ Developed by: Jyotheeswar Arvind Manickavasagar, Ritikesh G, Ankur Sinha
 </head>
 <body>
 <!-- Menu component -->
-<div class="ui inverted menu">
-  <a class="active item">
-    <i class="home icon"></i> Home
-  </a>
-  <a class="item">
-    <i class="mail icon"></i> Messages
-  </a>1
-  <div class="right menu">
-    <div class="item">
-      <div class="ui icon input">
-        <input type="text" placeholder="Faculty,University name">
-        <i class="search link icon"></i>
+    <div class="ui inverted menu">
+      <a class="active item">
+        <i class="home icon"></i> Home
+      </a>
+      <a class="item">
+        <i class="mail icon"></i> Messages
+      </a>1
+      <div class="right menu">
+        <div class="item">
+          <div class="ui icon input">
+            <input type="text" placeholder="Faculty,University name">
+            <i class="search link icon"></i>
+          </div>
+        </div>
+        <div class="ui dropdown item">
+          Language <i class="dropdown icon"></i>
+          <div class="menu">
+            <a class="item">English</a>
+            <a class="item">Russian</a>
+            <a class="item">Spanish</a>
+          </div>
+        </div>
+        <div class="item" id="signUpButton">
+            <div class="ui primary button">Sign up</div>
+        </div>
+        <div class="item" id="LoginButton">
+        <div class="ui button">Log-in</div>
+        </div>
       </div>
     </div>
-    <div class="ui dropdown item">
-      Language <i class="dropdown icon"></i>
-      <div class="menu">
-        <a class="item">English</a>
-        <a class="item">Russian</a>
-        <a class="item">Spanish</a>
-      </div>
+    <!-- End of Menu -->
+    <!-- Login Modal -->
+    <div class="ui small modal" id="LoginModal">
+        <i class="close icon"></i>
+        <div class="header">
+            Login
+        </div>
+        <form ng-submit="Signin()">
+            <div class="content">
+                <div class="ui form segment">
+                    <div class="one required fields">
+                        <div class="field">
+                            <label>Username</label>
+                            <input ng-model="username" placeholder="Username" type="text">
+                        </div>
+                    </div>
+                    <div class="one required fields">
+                        <div class="field">
+                          <label>Password</label>
+                          <div class="ui input focus">
+                            <input ng-model="password" placehodler="Password" type="password">
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <div class="ui black button">
+                    Forgot Password
+                </div>
+                <input class="ui positive right labeled icon button" type="submit" value="Sign In" />
+            </div>
+        </form>
     </div>
-    <div class="item" id="signUpButton">
-    <div class="ui primary button">Sign up</div>
-  </div>
-  <div class="item" id="LoginButton">
-    <div class="ui button">Log-in</div>
-  </div>
-  </div>
-</div>
-<!-- End of Menu -->
-<!-- Login Modal -->
-<div class="ui small modal" id="LoginModal">
-  <i class="close icon"></i>
-  <div class="header">
-    Login
-  </div>
-<div class="content">
- <div class="ui form segment">
-  <div class="one required fields">
-<div class="field">
-  <label>Username</label>
-  <input placeholder="Username" type="text">
-</div>
-</div>
-<div class="one required fields">
-<div class="field">
-  <label>Password</label>
-  <div class="ui input focus">
-  <input placeholder="********" type="text">
-  </div>
-</div>
-</div>
-</div>
-</div>
-  <div class="actions">
-    <div class="ui black button">
-      Forgot Password
+    <!-- End of Login Modal -->
+    <!-- SignUp Modal -->
+    <div class="ui small modal" id="signUpModal">
+        <i class="close icon"></i>
+        <div class="header">
+            Sign Up
+        </div>
+        <form ng-submit="Signup()">
+            <div class="content">
+                <div class="ui form segment">
+                    <div class="one required fields">
+                        <div class="field">
+                            <label>Username</label>
+                            <input ng-model="username" placeholder="Username" type="text">
+                        </div>
+                    </div>
+                    <div class="one required fields">
+                        <div class="field">
+                            <label>Password</label>
+                            <div class="ui input focus">
+                                <input ng-model="password" placehodler="Password" type="password">
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="actions">
+                <div class="ui black button">
+                    Cancel
+                </div>
+                <input class="ui positive right labeled icon button" id="submit" type="submit" value="Create Account" />
+            </div>
+        </form>
     </div>
-    <div class="ui positive right labeled icon button">
-      Sign In
-      <i class="checkmark icon"></i>
-    </div>
-  </div>
-</div>
-<!-- End of Login Modal -->
-<!-- SignUp Modal -->
-<div class="ui small modal" id="signUpModal">
-  <i class="close icon"></i>
-  <div class="header">
-    Sign Up
-  </div>
-<div class="content">
- <div class="ui form segment">
-  <div class="one required fields">
-<div class="field">
-  <label>Username</label>
-  <input placeholder="Username" type="text">
-</div>
-</div>
-<div class="one required fields">
-<div class="field">
-  <label>Password</label>
-  <div class="ui input focus">
-  <input placeholder="********" type="text">
-  </div>
-</div>
-</div>
-</div>
-</div>
-  <div class="actions">
-    <div class="ui black button">
-      Cancel
-    </div>
-    <div class="ui positive right labeled icon button">
-      Create Account
-      <i class="checkmark icon"></i>
-    </div>
-  </div>
-</div>
-<!-- End of Sign Up Modal -->
-<!-- Side Menu -->
+    <!-- End of Sign Up Modal -->
+    <!-- Side Menu -->
     <div id="sidebar-content" class="ui left vertical inverted labeled icon sidebar menu"> 
         <a class="item">
             <i class="home icon"></i>
@@ -165,118 +163,128 @@ Developed by: Jyotheeswar Arvind Manickavasagar, Ritikesh G, Ankur Sinha
             Settings
         </a>
     </div>
-<!-- Side Menu -->
-<!-- Main Body -->
-<div class="ui grid">
-<div class="five wide column">
- <div id="sidebar-button" class="ui black big icon button">
-        <i class="content icon"></i>
-        <span class="text" style="display:none;">Menu</span>
-    </div>
- </div>
-<div class="seven wide column"><div class="content">
-<div class="ui header">Welcome {{User_name}}</div>
-<div ng-repeat="rating in ratings">
-<h3>{{rating.name}}</h3><br>
-{{rating.rating}}<br>
-</div>
-</div></div>
-<div class="four wide column">
-<div class="content">
-	<div class="ui card">
-  <div class="image dimmable">
-<div class="ui dimmer">
-  <div class="content">
-    <div class="center">
-      <div class="ui inverted button">Change picture</div>
-    </div>
-  </div>
-</div>
-<img src="images/pup.jpg">
-  </div>
-  <div class="content">
-<div class="header">{{User_name}}</div>
-<div class="meta">
-  <a class="group">{{university_name}}</a>
-</div>
-<div class="description">Some statistics</div>
-  </div>
-  <div class="extra content">
-<a class="right floated created">View ratings</a>
-<a class="friends">
-  Update information</a>
-  </div>
-</div>
-</div>
-</div>
-</div>
-<!-- End of main body -->
-<!-- Footer -->
-<footer>
-<div class="ui inverted footer vertical segment">
-    <div class="ui stackable center aligned page grid">
-      <div class="ten wide column">
-        <div class="ui three column center aligned stackable grid">
-          <div class="column">
-            <h5 class="ui inverted header">Students</h5>
-            <div class="ui inverted link list">
-              <a class="item">Report Abuse</a>
-              <a class="item">Rating Policy</a>
-              <a class="item">Complaints</a>
+    <!-- Side Menu -->
+    <!-- Main Body -->
+    <div class="ui grid">
+        <div class="five wide column">
+            <div id="sidebar-button" class="ui black big icon button">
+                <i class="content icon"></i>
+                <span class="text" style="display:none;">Menu</span>
             </div>
-          </div>
-          <div class="column">
-            <h5 class="ui inverted header">University</h5>
-            <div class="ui inverted link list">
-              <a class="item">Claim account</a>
-              <a class="item">Update information</a>
-              <a class="item">Report Abuse</a>
-            </div>
-          </div>
-          <div class="column">
-            <h5 class="ui inverted header">About Us</h5>
-            <div class="ui inverted link list">
-              <a class="item">The Team</a>
-              <a class="item">Our concept</a>
-              <a class="item">Privacy Policy</a>
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="six wide column">
-        <h5 class="ui inverted header">Contact Us</h5>
-        <addr>
-          66 XYZ<br>
-          Chennai India <br>
-        </addr>
-        <p>+91-9600089909</p>
-      </div>
+        <div class="seven wide column">
+            <div class="content">
+                <div class="ui header">{{message}}</div>
+                <div class="ui header">Welcome {{User_name}}</div>
+                <ul ng-repeat="user in users">
+                    <li>{{user.username}}</li>
+                    --{{user.password}}
+                </ul>
+            </div>
+        </div>
+        <div class="four wide column">
+            <div class="content">
+                <div class="ui card">
+                    <div class="image dimmable">
+                        <div class="ui dimmer">
+                            <div class="content">
+                                <div class="center">
+                                    <div class="ui inverted button">
+                                        Change picture
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <img src="images/pup.jpg">
+                    </div>
+                    <div class="content">
+                        <div class="header">
+                            {{User_name}}
+
+                        </div>
+                        <div class="meta">
+                            <a class="group">{{university_name}}</a>
+                        </div>
+                        <div class="description">
+                            Some statistics
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <a class="right floated created">View ratings</a>
+                        <a class="friends">
+                        Update information</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div style="align:center;">
-    Developed by Jyotheeswar Arvind M, Ritikesh G, Ankur Sinha &nbsp; <i class="india flag"></i></div>
-  </div>
-  </footer>
- <!-- End of footer -->
-  <!-- Styling scripts -->
-    <script src="Scripts/jquery-1.11.2.js"></script>
-    <script src="Scripts/semantic.js"></script>
-    <script>
-        $('#sidebar-button').hover(function () {
-            $('.text').toggle();
-            //$('.text').transition('browse right');
-        });
-        $('#sidebar-button').click(function () {
-            $('#sidebar-content').sidebar('toggle');
-        });
-    </script>
-    <script type="text/javascript">
-    $('#LoginButton').click(function () {
-    	$('#LoginModal').modal('show');
-    });
-    $('#signUpButton').click(function () {
-    	$('#signUpModal').modal('show');
-    });
-    </script>
-  <!-- End of styling scripts -->
+    <!-- End of main body -->
+    <!-- Footer -->
+    <footer>
+    <div class="ui inverted footer vertical segment">
+        <div class="ui stackable center aligned page grid">
+          <div class="ten wide column">
+            <div class="ui three column center aligned stackable grid">
+              <div class="column">
+                <h5 class="ui inverted header">Students</h5>
+                <div class="ui inverted link list">
+                  <a class="item">Report Abuse</a>
+                  <a class="item">Rating Policy</a>
+                  <a class="item">Complaints</a>
+                </div>
+              </div>
+              <div class="column">
+                <h5 class="ui inverted header">University</h5>
+                <div class="ui inverted link list">
+                  <a class="item">Claim account</a>
+                  <a class="item">Update information</a>
+                  <a class="item">Report Abuse</a>
+                </div>
+              </div>
+              <div class="column">
+                <h5 class="ui inverted header">About Us</h5>
+                <div class="ui inverted link list">
+                  <a class="item">The Team</a>
+                  <a class="item">Our concept</a>
+                  <a class="item">Privacy Policy</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="six wide column">
+            <h5 class="ui inverted header">Contact Us</h5>
+            <addr>
+              66 XYZ<br>
+              Chennai India <br>
+            </addr>
+            <p>+91-9600089909</p>
+          </div>
+        </div><br />
+        <div style="align:center;">
+        Developed by Jyotheeswar Arvind M, Ritikesh G, Ankur Sinha &nbsp; <i class="india flag"></i></div>
+      </div>
+      </footer>
+     <!-- End of footer -->
+      <!-- Styling scripts -->
+        <script src="Scripts/jquery-1.11.2.js"></script>
+        <script src="Scripts/semantic.js"></script>
+        <script>
+            $('#sidebar-button').hover(function () {
+                $('.text').toggle();
+                //$('.text').transition('browse right');
+            });
+            $('#sidebar-button').click(function () {
+                $('#sidebar-content').sidebar('toggle');
+            });
+        </script>
+        <script type="text/javascript">
+            $('#LoginButton').click(function () {
+    	        $('#LoginModal').modal('show');
+            });
+            $('#signUpButton').click(function () {
+    	        $('#signUpModal').modal('show');
+            });
+        </script>
+      <!-- End of styling scripts -->
 </body>
 </html>
