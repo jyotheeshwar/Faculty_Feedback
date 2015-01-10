@@ -1,4 +1,4 @@
-﻿var express = require('express');
+var express = require('express');
 var bodyParser = require('body-parser');
 var port = process.env.port || 1337;
 var app = express();
@@ -10,6 +10,7 @@ var http = require('http');
 var path = require('path');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
+var GoogleStrategy=require('passport-google').Strategy;
 
 var FACEBOOK_APP_ID = "1522735911308795"
 var FACEBOOK_APP_SECRET = "8602dd723617f56c0cf78783508c90c1";
@@ -69,7 +70,20 @@ passport.use(new FacebookStrategy({
 	});
     }
 ));
-
+passport.use(new GoogleStrategy({
+	returnURL:'http://localhost:1337/',
+	realm:'http://localhost:1337/'
+},
+	function (identifier,profile,done){
+		User.findOrCreate({openId:identifier},function(err,user){
+			done(err,user);
+		});
+	}
+));
+app.get('/auth/google', passport.authenticate('google'));
+app.get('/auth/google/return', 
+  passport.authenticate('google', { successRedirect: '/',
+                                    failureRedirect: '/login' }));
 passport.serializeUser(function(user, done) {
   done(null, user);
 });
