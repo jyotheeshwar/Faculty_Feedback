@@ -13,17 +13,16 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 Developed by: Jyotheeswar Arvind Manickavasagar, Ritikesh G, Ankur Sinha
 -->
-<html ng-app="TestAngular" ng-controller="MainCtrl">
+<html ng-app="FacFeedback">
 <head>
     <meta charset="utf-8" />
-    <title>{{test}}</title>
+    <title>Faculty Feedback</title>
     <link rel="stylesheet" href="css/semantic.css" />
 	<script src="scripts/jquery-1.11.2.js"></script>
     <script src="scripts/semantic.js"></script>
     <script src="scripts/angular.js"></script>
-    <script src="app.js"></script> <!-- we will later move angular-code into separate folders in angular style. -->
-</head>
-<body>
+    <script src="scripts/Angular/app.js"></script> 
+<body ng-controller="MainCtrl">
 <!-- Menu component -->
     <div class="ui inverted menu">
       <a class="active item">

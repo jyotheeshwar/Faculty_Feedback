@@ -1,36 +1,34 @@
+// Requiring external modules
 var express = require('express');
 var bodyParser = require('body-parser');
-var port = process.env.port || 1337;
-var app = express();
+var passport = require('passport')
+    , FacebookStrategy = require('passport-facebook').Strategy
+    , GoogleStrategy = require('passport-google').Strategy;
+
+// App Specific modules
 var DataAccess = require('./modules/DataAccess.js');
 var logger = require('./modules/logger.js');
-var routes = require('./routes');
-var user = require('./routes/user');
-var http = require('http');
-var path = require('path');
-var passport = require('passport');
-var FacebookStrategy = require('passport-facebook').Strategy;
-var GoogleStrategy=require('passport-google').Strategy;
 
-var FACEBOOK_APP_ID = "1522735911308795"
-var FACEBOOK_APP_SECRET = "8602dd723617f56c0cf78783508c90c1";
-
-var port = process.env.port || 1337;
-app.set('views', path.join(__dirname, 'views'));
+// App variable configurations
+var port = process.env.port || 3000;
 var app = express();
+app.set('views', app.path() + 'views');
 
+app.locals.FACEBOOK_APP_ID = "1522735911308795"
+app.locals.FACEBOOK_APP_SECRET = "8602dd723617f56c0cf78783508c90c1";
+
+// App middlewares
+app.use(express.static( app.path() + 'public'));
 app.use(logger);
-app.use(express.static('public'));
-
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
 
-app.get('/', function(req, res){
-  res.sendfile('./views/index.html');
+// App Routes
+app.get('/', function (req, res){
+  res.status(200).sendFile(__dirname + '/views/index.html');
 });
-
 
 app.get('/users', function (req, res) { 
     DataAccess.Users(res);
@@ -52,16 +50,14 @@ app.post('/signup', function (req, res) {
     DataAccess.Signup(req.body.username, req.body.password, res);
 });
 
-app.listen(port);
-
+// Passport specifics
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 passport.use(new FacebookStrategy({
-        clientID: FACEBOOK_APP_ID,
-        clientSecret: FACEBOOK_APP_SECRET,
-        callbackURL: "http://localhost:1337/auth/facebook/callback"
+        clientID: app.locals.FACEBOOK_APP_ID,
+        clientSecret: app.locals.FACEBOOK_APP_SECRET,
+        callbackURL: "http://localhost:3000/auth/facebook/callback"
     },
     function (accessToken, refreshToken, profile, done) {
 	process.nextTick(function () {
@@ -70,43 +66,35 @@ passport.use(new FacebookStrategy({
 	});
     }
 ));
+
 passport.use(new GoogleStrategy({
-	returnURL:'http://localhost:1337/',
-	realm:'http://localhost:1337/'
+	returnURL:'http://localhost:3000/',
+	realm:'http://localhost:3000/'
 },
 	function (identifier,profile,done){
-		User.findOrCreate({openId:identifier},function(err,user){
-			done(err,user);
-		});
-	}
-));
-app.get('/auth/google', passport.authenticate('google'));
-app.get('/auth/google/return', 
-  passport.authenticate('google', { successRedirect: '/',
-                                    failureRedirect: '/login' }));
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
+    //User.findOrCreate({openId:identifier},function(err,user){
+        console.log(serializeUser(profile));
+		done(err,user);
+		//});
+}));
 
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
-});
+app.get('/auth/google', passport.authenticate('google'));
+
+app.get('/auth/google/return',
+    passport.authenticate('google', {
+    successRedirect: '/success',
+    failureRedirect: '/error'
+}));
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
-app.get('/auth/facebook/callback', 
-		  passport.authenticate('facebook', { successRedirect: '/success',
-			                                        failureRedirect: '/error' }));
+app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {
+    successRedirect: '/success',
+    failureRedirect: '/error'
+}));
 
-app.get('/success', function(req, res){
-	res.send("success logged in");
+// Server Listener
+app.listen(port, function () { 
+    console.log("Express server started on port:" + port);
 });
-
-app.get('/error', function(req, res){
-	res.send("error logged in");
-});
-
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port 1337');
-});
-
