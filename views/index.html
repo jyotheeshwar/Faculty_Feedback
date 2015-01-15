@@ -11,7 +11,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-Developed by: Jyotheeswar Arvind Manickavasagar, Ritikesh G, Ankur Sinha
+Developed by: JAR
 -->
 <html ng-app="FacFeedback">
 <head>
@@ -22,7 +22,7 @@ Developed by: Jyotheeswar Arvind Manickavasagar, Ritikesh G, Ankur Sinha
     <script src="scripts/semantic.js"></script>
     <script src="scripts/angular.js"></script>
     <script src="scripts/Angular/app.js"></script> 
-<body ng-controller="MainCtrl">
+<body ng-controller="MainCtrl" ng-init="SessionCheck()">
 <!-- Menu component -->
     <div class="ui inverted menu">
       <a class="active item">
@@ -47,10 +47,13 @@ Developed by: Jyotheeswar Arvind Manickavasagar, Ritikesh G, Ankur Sinha
           </div>
         </div>
         <div class="item" id="signUpButton">
-            <div class="ui primary button">Sign up</div>
+            <div class="ui primary button" ng-show="!loggedin">Sign up</div>
         </div>
         <div class="item" id="LoginButton">
-        <div class="ui button">Log-in</div>
+            <div class="ui button" ng-show="!loggedin">Log-in</div>
+        </div>
+        <div class="item" ng-click="Logout()">
+            <div class="ui button" ng-show="loggedin">Log-out</div>
         </div>
       </div>
     </div>
@@ -62,25 +65,33 @@ Developed by: Jyotheeswar Arvind Manickavasagar, Ritikesh G, Ankur Sinha
             Login
         </div>
         <form ng-submit="Signin()">
-            <div class="content">
-                <div class="ui form segment">
-                    <div class="one required fields">
-                        <div class="field">
-                            <label>Username</label>
-                            <input ng-model="username" placeholder="Username" type="text">
+            <div class="ui grid">
+                <div class="two column row">
+                    <div class="column">
+                        <div class="ui form segment">
+                            <div class="one required fields">
+                                <div class="field">
+                                    <label>Username</label>
+                                    <input ng-model="username" placeholder="Username" type="text">
+                                </div>
+                            </div>
+                            <div class="one required fields">
+                                <div class="field">
+                                  <label>Password</label>
+                                  <div class="ui input focus">
+                                    <input ng-model="password" placehodler="Password" type="password">
+                                  </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="one required fields">
-                        <div class="field">
-                          <label>Password</label>
-                          <div class="ui input focus">
-                            <input ng-model="password" placehodler="Password" type="password">
-                          </div>
-                        </div>
+                    <div class="column">
+                        <a href="/auth/facebook"><div class="ui facebook button"><i class="facebook icon"></i>Facebook</div></a>
                     </div>
                 </div>
             </div>
             <div class="actions">
+                
                 <div class="ui black button">
                     Forgot Password
                 </div>
@@ -175,12 +186,11 @@ Developed by: Jyotheeswar Arvind Manickavasagar, Ritikesh G, Ankur Sinha
             <div class="content">
                 <div class="ui header">{{message}}</div>
                 <div class="ui header">Welcome {{User_name}}</div>
-                <a href="/auth/facebook">Login via Facebook</a>
                 <ul ng-repeat="user in users">
                     <li>{{user.username}}</li>
                     --{{user.password}}
-                </ul>
-                <br><a href="/auth/google">Sign In with Google</a>     </div>
+                </ul>     
+            </div>
         </div>
 
         <div class="four wide column">
@@ -254,10 +264,10 @@ Developed by: Jyotheeswar Arvind Manickavasagar, Ritikesh G, Ankur Sinha
           </div>
           <div class="six wide column">
             <h5 class="ui inverted header">Contact Us</h5>
-            <addr>
+            <cite>
               66 XYZ<br>
               Chennai India <br>
-            </addr>
+            </cite>
             <p>+91-9600089909</p>
           </div>
         </div><br />
@@ -266,7 +276,7 @@ Developed by: Jyotheeswar Arvind Manickavasagar, Ritikesh G, Ankur Sinha
       </div>
       </footer>
      <!-- End of footer -->
-      <!-- Styling scripts -->
+      <!-- scripts -->
         <script src="Scripts/jquery-1.11.2.js"></script>
         <script src="Scripts/semantic.js"></script>
         <script>
@@ -286,6 +296,6 @@ Developed by: Jyotheeswar Arvind Manickavasagar, Ritikesh G, Ankur Sinha
     	        $('#signUpModal').modal('show');
             });
         </script>
-      <!-- End of styling scripts -->
+      <!-- End of scripts -->
 </body>
 </html>

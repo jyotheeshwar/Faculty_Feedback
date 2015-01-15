@@ -1,5 +1,7 @@
 // Requiring external modules
 var express = require('express');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var bodyParser = require('body-parser');
 var passport = require('passport')
     , FacebookStrategy = require('passport-facebook').Strategy
@@ -12,10 +14,18 @@ var logger = require('./modules/logger.js');
 // App variable configurations
 var port = process.env.port || 3000;
 var app = express();
-app.set('views', app.path() + 'views');
+//app.set('views', app.path() + 'views');
 
-app.locals.FACEBOOK_APP_ID = "1522735911308795"
-app.locals.FACEBOOK_APP_SECRET = "8602dd723617f56c0cf78783508c90c1";
+app.locals.FACEBOOK_APP_ID = "1527212264216404"
+app.locals.FACEBOOK_APP_SECRET = "faeb420f661329463996b06b42281f21";
+
+passport.serializeUser(function (user, done) {
+    done(null, user.displayName);
+});
+
+passport.deserializeUser(function (displayName, done) {
+    done(null, displayName);
+});
 
 // App middlewares
 app.use(express.static( app.path() + 'public'));
@@ -23,22 +33,23 @@ app.use(logger);
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(cookieParser());
 app.use(bodyParser.json());
+app.use(session({ secret: 'My Session', resave:false }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // App Routes
 app.get('/', function (req, res){
-  res.status(200).sendFile(__dirname + '/views/index.html');
+    res.sendFile(__dirname + '/views/index.html');
 });
 
 app.get('/users', function (req, res) { 
     DataAccess.Users(res);
 });
 
-app.get('/success', function(req, res, next) {
-  res.send('Successfully logged in.');
-});
- 
-app.get('/error', function(req, res, next) {
+app.get('/error', function (req, res) {
+
   res.send("Error logging in.");
 });
 
@@ -50,20 +61,25 @@ app.post('/signup', function (req, res) {
     DataAccess.Signup(req.body.username, req.body.password, res);
 });
 
-// Passport specifics
-app.use(passport.initialize());
-app.use(passport.session());
+app.get('/signedin', function (req, res) {
+    res.send(req.user);
+});
 
+app.get('/logout', function (req, res) {
+    req.session.destroy(function (err) { 
+        //do something about it
+    });
+    res.end();
+});
+
+// Passport specifics
 passport.use(new FacebookStrategy({
         clientID: app.locals.FACEBOOK_APP_ID,
         clientSecret: app.locals.FACEBOOK_APP_SECRET,
         callbackURL: "http://localhost:3000/auth/facebook/callback"
     },
     function (accessToken, refreshToken, profile, done) {
-	process.nextTick(function () {
-		console.log(profile);
-        	return done(null, profile);
-	});
+    	return done(null, profile);
     }
 ));
 
@@ -73,8 +89,8 @@ passport.use(new GoogleStrategy({
 },
 	function (identifier,profile,done){
     //User.findOrCreate({openId:identifier},function(err,user){
-        console.log(serializeUser(profile));
-		done(err,user);
+        console.log(profile);
+		done(null ,profile);
 		//});
 }));
 
@@ -90,9 +106,10 @@ app.get('/auth/facebook', passport.authenticate('facebook'));
 
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
-    successRedirect: '/success',
-    failureRedirect: '/error'
-}));
+    failureRedirect: '/error',
+    successRedirect: '/'
+    })
+);
 
 // Server Listener
 app.listen(port, function () { 
