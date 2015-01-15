@@ -8,9 +8,10 @@
             $scope.loggedin = false;
             $scope.SessionCheck = function () {
                 $http.get('/signedin').success(function (data) {
-                    if (data)
+                    if (data) {
                         $scope.loggedin = true;
-                    $scope.User_name = data;
+                        $scope.User_name = data;
+                    }
                 });
             };
             
@@ -32,12 +33,12 @@
                 });
             };
 
-            $scope.Logout = function () {
+            /*$scope.Logout = function () {
                 $http.get('/logout', function () { 
                     $scope.loggedin = false;
                     $scope.User_name = 'Insanity Puppy';
                 });
-            };
+            };*/
         }]);
 })();
 

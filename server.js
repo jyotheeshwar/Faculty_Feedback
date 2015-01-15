@@ -69,7 +69,7 @@ app.get('/logout', function (req, res) {
     req.session.destroy(function (err) { 
         //do something about it
     });
-    res.end();
+    res.redirect('/');
 });
 
 // Passport specifics
