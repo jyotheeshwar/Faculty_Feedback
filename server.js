@@ -84,7 +84,7 @@ passport.use(new FacebookStrategy({
 ));
 
 passport.use(new GoogleStrategy({
-	returnURL:'http://localhost:3000/',
+	returnURL:'http://localhost:3000/auth/google/return',
 	realm:'http://localhost:3000/'
 },
 	function (identifier,profile,done){
@@ -98,7 +98,7 @@ app.get('/auth/google', passport.authenticate('google'));
 
 app.get('/auth/google/return',
     passport.authenticate('google', {
-    successRedirect: '/success',
+    successRedirect: '/',
     failureRedirect: '/error'
 }));
 
